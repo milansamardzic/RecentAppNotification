@@ -76,6 +76,10 @@ public class MainActivity extends Activity {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			
+			
+		
 	}
 
 	private void RecentApplication() throws NoSuchMethodException,
@@ -101,6 +105,7 @@ public class MainActivity extends Activity {
 		Method clearAll = statusBarClass.getMethod("toggleRecentApps");
 		clearAll.setAccessible(true);
 		clearAll.invoke(statusBarObject);
+		finish();
 	}
 
 	public class BootUpReceiver extends BroadcastReceiver{
