@@ -1,7 +1,9 @@
-package com.milansamardzic.recentapp;
+package com.milansamardzic.recentapp.sversion;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
+import com.milansamardzic.recentapp.R;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -25,21 +27,21 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		
+					
 			//freeRAM
 			MemoryInfo mi = new MemoryInfo();
 			ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
 			activityManager.getMemoryInfo(mi);
 			long availableMegs = mi.availMem / 1048576L;
 			String freeRam = Long.toString(availableMegs);
-		
-					
+			
 			//ongoing Notification
 			Context context = getApplicationContext();
 			NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
 			.setSmallIcon(R.drawable.ic_launcher);
 			builder.setContentTitle("App Switcher");
-			builder.setContentText("Avaible RAM: "+freeRam+" MB");
+			builder.setContentText("Available RAM: "+freeRam+" MB");
 			
 			
 			Intent intent = new Intent(context, MainActivity.class);
@@ -109,13 +111,15 @@ public class MainActivity extends Activity {
 	}
 
 	public class BootUpReceiver extends BroadcastReceiver{
-		@Override
-		public void onReceive(Context context, Intent intent) {
-		    Intent i = new Intent(context, MainActivity.class);  
-		    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		    context.startActivity(i);  
-		}
-		}
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+                Intent i = new Intent(context, MainActivity.class);  
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(i);  
+        }
+
+}
 	
 	
 	@Override
